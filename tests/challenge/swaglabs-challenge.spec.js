@@ -6,15 +6,15 @@ test.describe('Navigate to the Swag Labs Login Page', () => {
         await expect(page).toHaveTitle('Swag Labs');
     });
 
-    test('Login using valid credentials', async ({ page }) => {
+    test('Login using valid credentials - Challenge', async ({ page }) => {
         
     });
 
-    test('Login attempt using invalid credentials', async ({ page }) => {
+    test('Login attempt using invalid credentials - Challenge', async ({ page }) => {
         
     });
 
-    test('Place an order', async ({ page }) => {
+    test('Place an order - Challenge', async ({ page }) => {
         
     });
 });

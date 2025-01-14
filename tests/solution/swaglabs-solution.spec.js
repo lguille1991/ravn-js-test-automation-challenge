@@ -6,21 +6,21 @@ test.describe('Navigate to the Swag Labs Login Page', () => {
         await expect(page).toHaveTitle('Swag Labs');
     });
 
-    test('Login using valid credentials', async ({ page }) => {
+    test('Login using valid credentials - Solution', async ({ page }) => {
         await page.getByPlaceholder('Username').fill('standard_user');
         await page.getByPlaceholder('Password').fill('secret_sauce');
         await page.getByText('Login').click();
         await expect(page.getByText('Products')).toBeVisible();
     });
 
-    test('Login using invalid credentials', async ({ page }) => {
+    test('Login using invalid credentials - Solution', async ({ page }) => {
         await page.getByPlaceholder('Username').fill('locked_out_user');
         await page.getByPlaceholder('Password').fill('secret_sauce');
         await page.getByText('Login').click();
         await expect(page.getByText('Epic sadface: Sorry, this user has been locked out.')).toBeVisible();
     });
 
-    test('Complete purchase', async ({ page }) => {
+    test('Complete purchase - Solution', async ({ page }) => {
         await page.getByPlaceholder('Username').fill('standard_user');
         await page.getByPlaceholder('Password').fill('secret_sauce');
         await page.getByText('Login').click();
