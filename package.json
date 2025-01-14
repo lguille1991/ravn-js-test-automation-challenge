@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "login-challenge": "npx playwright test -g 'Login using valid credentials - Challenge' --headed",
+    "bad-login-challenge": "npx playwright test -g 'Login attempt using invalid credentials - Challenge' --headed",
+    "place-order-challenge": "npx playwright test -g 'Place an order - Challenge' --headed"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
