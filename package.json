@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "all": "npx playwright test --headed",
     "login-challenge": "npx playwright test -g 'Login using valid credentials - Challenge' --headed",
     "bad-login-challenge": "npx playwright test -g 'Login attempt using invalid credentials - Challenge' --headed",
     "place-order-challenge": "npx playwright test -g 'Place an order - Challenge' --headed"
