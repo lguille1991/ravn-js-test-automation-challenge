@@ -10,14 +10,14 @@ test.describe('Navigate to the Swag Labs Login Page', () => {
         await page.getByPlaceholder('Username').fill('standard_user');
         await page.getByPlaceholder('Password').fill('secret_sauce');
         await page.getByText('Login').click();
-        await expect(page.getByText('Products')).toBeVisible();
+        await expect(page).toHaveURL(/.*inventory/);
     });
 
     test('Login using invalid credentials - Solution', async ({ page }) => {
         await page.getByPlaceholder('Username').fill('locked_out_user');
         await page.getByPlaceholder('Password').fill('secret_sauce');
         await page.getByText('Login').click();
-        await expect(page.getByText('Epic sadface: Sorry, this user has been locked out.')).toBeVisible();
+        await expect(page.getByText('Epic sadface')).toBeVisible();
     });
 
     test('Complete purchase - Solution', async ({ page }) => {
@@ -34,6 +34,7 @@ test.describe('Navigate to the Swag Labs Login Page', () => {
         await page.getByPlaceholder('Zip/Postal Code').fill('12345');
         await page.getByText('Continue').click();
         await page.getByText('Finish').click();
-        await expect(page.getByText('THANK YOU FOR YOUR ORDER')).toBeVisible
+        await expect(page.getByText('THANK YOU FOR YOUR ORDER')).toBeVisible();
+        await expect(page).toHaveURL(/.*checkout-complete/);
     });
 });

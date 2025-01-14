@@ -48,6 +48,7 @@ npx playwright test <file-name>
 ### You can also run a specific test making use of the custom scripts in **`package.json`**:
 
 ```bash
+npm run all
 npm run login-challenge
 npm run bad-login-challenge
 npm run place-order-challenge
