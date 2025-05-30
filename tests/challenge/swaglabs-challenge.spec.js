@@ -9,6 +9,9 @@ test.describe('Navigate to the Swag Labs Login Page', () => {
     test('Login using valid credentials - Challenge', async ({ page }) => {
 
         // Your test logic goes here
+        await page.getByRole('textbox',{name:'Username'}).fill('standard_user');
+        await page.locator('[data-test="password"]').fill('secret_sauce');
+        await page.locator("//input[@data-test='login-button']").click();    
         
 
         // You can modify this assetion or add more
@@ -18,6 +21,9 @@ test.describe('Navigate to the Swag Labs Login Page', () => {
     test('Login attempt using invalid credentials - Challenge', async ({ page }) => {
 
         // Your test logic goes here
+        await page.getByRole('textbox',{name:'Username'}).fill('standard_user');
+        await page.locator('[data-test="password"]').fill('invalid');
+        await page.locator("//input[@data-test='login-button']").click();
         
 
         // You can modify this assetion or add more
