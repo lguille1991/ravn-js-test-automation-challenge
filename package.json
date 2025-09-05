@@ -4,13 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "all-ui": "npx playwright test swaglabs-challenge.spec.js --headed",
-    "login-challenge": "npx playwright test -g 'Login using valid credentials - Challenge' --headed",
-    "bad-login-challenge": "npx playwright test -g 'Login attempt using invalid credentials - Challenge' --headed",
-    "place-order-challenge": "npx playwright test -g 'Place an order - Challenge' --headed",
-    "all-api": "npx playwright test booking-challenge.spec.js",
-    "post-challenge": "npx playwright test -g 'Create booking - Challenge'",
-    "get-challenge": "npx playwright test -g 'Get booking by ID - Challenge'"
   },
   "keywords": [],
   "author": "",
