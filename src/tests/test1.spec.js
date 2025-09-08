@@ -1,5 +1,4 @@
-import { test, expect } from ("@playwright/test");
-
+import { test, expect } from "@playwright/test";
 
 test.describe("Right a test description here", () => {
   const BASE_URL = "https://TestingURLHere";
