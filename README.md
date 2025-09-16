@@ -1,63 +1,147 @@
-# Ravn Test Automation Live Challenge
+# Ravn Test Automation Challenge
 
-The goal of this challenge is to showcase good practices in structuring Playwright tests:
-- Keep locators and actions inside dedicated Page Object files.  
-- Reuse shared functionality in a `BasePage`.  
-- Keep tests clean and focused only on verifying behavior. 
+A TypeScript-based Playwright test automation framework showcasing good practices in structuring end-to-end tests:
+- **Page Object Model (POM)**: Keep locators and actions inside dedicated Page Object files
+- **Base Page Pattern**: Reuse shared functionality in a `BasePage` class
+- **Clean Tests**: Keep tests focused only on verifying behavior
+- **TypeScript**: Full type safety and better IDE support
+
+## Prerequisites
+
+- **Node.js**: Version 18+ recommended ([Download Node.js](https://nodejs.org/))
+- **npm**: Comes with Node.js
 
 ## Installation
 
-To get started with this project, follow the steps below to clone the repository and install the necessary dependencies.
-
-### Clone the Repository
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/ravn-test-automation-live-challenge.git
-cd ravn-test-automation-live-challenge
+git clone https://github.com/lguille1991/ravn-js-test-automation-challenge.git
+cd ravn-js-test-automation-challenge
 ```
 
-### Install Dependencies
-
-Make sure you have [Node.js](https://nodejs.org/) installed. Then, install the project dependencies using npm:
+### 2. Install Dependencies
 
 ```bash
 npm install
 ```
 
-## Install Playwright
-
-If you haven't, run the following command in order to install Playwright:
+### 3. Install Playwright Browsers
 
 ```bash
 npx playwright install
 ```
 
 ## Project Structure
-```
-📂 RAVN-JS-TEST-AUTOMATION-CHALLENGE
- ┣ 📂 src
- ┃ ┣ 📂 pages        # Page Object Model files (BasePage, specific page classes)
- ┃ ┗ 📂 tests        # Test files that import and use the POM classes
- ┣ 📂 test-results       # Playwright test results and traces
- ┣ 📂 playwright-report  # HTML reports from Playwright
- ┣ 📄 playwright.config.js # Playwright configuration file
- ┣ 📄 package.json
- ┣ 📄 README.md
- ```
 
+```
+📂 ravn-js-test-automation-challenge
+ ┣ 📂 src
+ ┃ ┣ 📂 pages           # Page Object Model files (.ts)
+ ┃ ┃ ┣ 📄 basePage.ts   # Base page with common functionality
+ ┃ ┃ ┗ 📄 servicesPage.ts # Services page specific actions
+ ┃ ┣ 📂 selectors       # Reusable selectors (if any)
+ ┃ ┗ 📂 tests           # Test files (.spec.ts)
+ ┃   ┗ 📄 qaServices.spec.ts
+ ┣ 📂 test-results      # Playwright test results and traces
+ ┣ 📂 playwright-report # HTML reports from Playwright
+ ┣ 📄 playwright.config.ts # Playwright configuration
+ ┣ 📄 tsconfig.json     # TypeScript configuration
+ ┣ 📄 package.json      # Dependencies and scripts
+ ┗ 📄 README.md
+```
+
+## Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm test` | Run all tests |
+| `npm run test:headed` | Run tests with browser UI visible |
+| `npm run test:ui` | Run tests with Playwright UI mode |
+| `npm run type-check` | Check TypeScript types without running tests |
+| `npm run report` | Open the last HTML test report |
+
+## Running Tests
 
 ### Run All Tests
-
 ```bash
+npm test
+# or
 npx playwright test
 ```
-### Run Specific Test File
-To run a specific test suite, use the following command:
 
+### Run Specific Test File
 ```bash
-npx playwright test <file-name>
+npx playwright test qaServices.spec.ts
 ```
 
-### Creating Your Own Script
-This project intentionally does not include predefined test scripts in package.json.
-As part of extending the framework, you are encouraged to create your own run scripts.
+### Run Tests with Browser Visible
+```bash
+npm run test:headed
+```
+
+### Run Tests in UI Mode (Interactive)
+```bash
+npm run test:ui
+```
+
+### Check TypeScript Types
+```bash
+npm run type-check
+```
+
+## Development
+
+### TypeScript Support
+This project is built with TypeScript for better type safety and developer experience. All page objects and tests are written in TypeScript (`.ts` files).
+
+### Adding New Tests
+1. Create new test files in `src/tests/` with `.spec.ts` extension
+2. Create corresponding page objects in `src/pages/` with `.ts` extension
+3. Import and extend `BasePage` for common functionality
+
+### Example Test Structure
+```typescript
+import { test, expect } from "@playwright/test";
+import ServicesPage from "../pages/servicesPage";
+
+test.describe("Services Page Tests", () => {
+  test("should verify quality assurance services", async ({ page }) => {
+    const servicesPage = new ServicesPage(page);
+    
+    await page.goto("https://www.ravn.co/services");
+    const testingTypes = await servicesPage.getTestingTypesText();
+    
+    expect(testingTypes).toContain("QA Automation");
+  });
+});
+```
+
+## Reports
+
+After running tests, you can view detailed reports:
+
+```bash
+npm run report
+```
+
+This opens an HTML report with test results, screenshots, and traces for failed tests.
+
+## Troubleshooting
+
+### TypeScript Errors
+If you encounter TypeScript compilation errors:
+```bash
+npm run type-check
+```
+
+### Playwright Browser Issues
+If tests fail due to browser issues:
+```bash
+npx playwright install --force
+```
+
+### Clear Previous Test Results
+```bash
+rm -rf test-results/ playwright-report/
+```
