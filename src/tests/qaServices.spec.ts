@@ -4,6 +4,13 @@ import { BasePage } from "../pages/basePage";
 
 test.describe("Right a test description here", () => {
   const BASE_URL = "https://www.ravn.co/";
+  const expectedTestingTypeTexts: string[] = [
+      "QA Automation",
+      "Manual QA",
+      "API Testing",
+      "Regression Testing",
+      "Performance Testing"
+    ]
 
   test.beforeEach(async ({ page }) => {
     await page.goto(BASE_URL);
@@ -22,15 +29,9 @@ test.describe("Right a test description here", () => {
     await basePage.goToServices();
     await expect(page).toHaveURL(/services?\//);;
     await expect(servicesPage.qualityAssuranceSubtext).toBeVisible();
-    const testingTypeTexts: string[] = await servicesPage.getTestingTypesText();
-    console.log("Testing Types:", testingTypeTexts);
-    expect(testingTypeTexts).toEqual([
-      "QA Automation",
-      "Manual QA",
-      "API Testing",
-      "Regression Testing",
-      "Performance Testing"
-    ]);
+    const actualTestingTypeTexts: string[] = await servicesPage.getTestingTypesText();
+    console.log("Testing Types:", actualTestingTypeTexts);
+    expect(actualTestingTypeTexts).toEqual(expectedTestingTypeTexts);
   });
 
 });

@@ -8,7 +8,7 @@ class ServicesPage extends BasePage {
 
   constructor(page: Page) {
     super(page);
-    this.qualityAssuranceSubtext = page.locator('//h3[text()="Quality Assurance"]/following-sibling::p');
+    this.qualityAssuranceSubtext = page.locator('p:near(h3:text-is("Quality Assurance"))');
     this.testingTypesLocator = page.locator('//h3[text()="Quality Assurance"]/parent::div/following-sibling::div/p');
   }
 

@@ -6,6 +6,54 @@ A TypeScript-based Playwright test automation framework showcasing good practice
 - **Clean Tests**: Keep tests focused only on verifying behavior
 - **TypeScript**: Full type safety and better IDE support
 
+## Live QA Automation Challenge (45 Minutes)
+
+This repo can be used as a live interview exercise for QA Automation Engineer candidates. The goal is to validate testing fundamentals and the ability to implement a small, maintainable Playwright test within a short timebox.
+
+### Timebox
+
+| Section | Minutes |
+|---------|---------|
+| Setup | 5 |
+| Fundamentals Q&A | 10 |
+| Automation Implementation | 25 |
+| Review / Debrief | 5 |
+
+### Part A: Automation Implementation (25 minutes)
+
+**Task**
+- Add one new test and one small Page Object method.
+- Keep tests focused and readable.
+- Avoid hard sleeps.
+- Use stable, intent-driven selectors.
+
+**Suggested Implementation**
+
+1. Create a new test in `src/tests/` (or add to `src/tests/qaServices.spec.ts`).
+2. Navigate to `https://www.ravn.co/services`.
+3. Add a method in `src/pages/servicesPage.ts` that returns the text of the testing offerings.
+4. Assert that at least two expected offerings are present.
+5. Ensure the test passes consistently.
+
+**Optional Stretch (if time remains)**
+- Add a negative/edge check (e.g., the list is not empty).
+- Add a small helper in `src/pages/basePage.ts` if it improves reuse.
+
+### Part B: Review / Debrief (5 minutes)
+
+Ask the candidate to explain:
+1. Why they chose those selectors.
+2. How they would make the test more robust.
+3. What they would do if the test became flaky in CI.
+
+### Evaluation Rubric (Quick Score 1–5 each)
+
+1. Test fundamentals
+2. Playwright syntax and API usage
+3. Code quality and readability
+4. Reliability (stable selectors, no hard sleeps)
+5. Communication and tradeoff reasoning
+
 ## Prerequisites
 
 - **Node.js**: Version 18+ recommended ([Download Node.js](https://nodejs.org/))
