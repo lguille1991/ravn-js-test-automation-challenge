@@ -3,6 +3,7 @@ import { Locator, Page } from "@playwright/test";
 export default class ContactPage {
     readonly form: Locator;
 
+
     readonly firstName: Locator;
     readonly lastName: Locator;
     readonly email: Locator;
