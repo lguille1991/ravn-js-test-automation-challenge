@@ -2,7 +2,7 @@ import { test, expect, Locator } from "@playwright/test";
 import ServicesPage from "../pages/servicesPage";
 import { BasePage } from "../pages/basePage";
 
-test.describe("Right a test description here", () => {
+test.describe("Write a test description here", () => {
   const BASE_URL = "https://www.ravn.co/";
   const expectedTestingTypeTexts: string[] = [
       "QA Automation",
@@ -22,7 +22,7 @@ test.describe("Right a test description here", () => {
   });
   
 
-  test("Right a test name", async ({ page }) => {
+  test("Write a test name", async ({ page }) => {
     const basePage = new BasePage(page);
     const servicesPage = new ServicesPage(page);
     // Add your test steps here.
