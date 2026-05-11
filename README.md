@@ -22,16 +22,24 @@ This repo can be used as a live interview exercise for QA Automation Engineer ca
 ### Part A: Automation Implementation (25 minutes)
 
 **Task**
-- Add one new test and one small Page Object method.
+- Implement one Playwright test using the provided skeleton.
 - Keep tests focused and readable.
 - Avoid hard sleeps.
 - Use stable, intent-driven selectors.
 
+**Provided Skeleton**
+
+The repo ships with an empty Page Object Model scaffold the candidate must fill in:
+
+- `src/pages/basePage.ts` — `BasePage` class with shared `page` reference. Add shared locators / actions here.
+- `src/pages/testPomPage.ts` — `TestPomPage` extends `BasePage`. Add page-specific locators and action methods here.
+- `src/tests/test.spec.ts` — empty spec file wired to `TestPomPage`. Add the `describe` text, test name, and steps here.
+
 **Suggested Implementation**
 
-1. Create a new test in `src/tests/` (or add to `src/tests/qaServices.spec.ts`).
-2. Navigate to `https://www.ravn.co/services`.
-3. Add a method in `src/pages/servicesPage.ts` that returns the text of the testing offerings.
+1. Open `src/tests/test.spec.ts` and define the test description and test name.
+2. Navigate to `https://www.ravn.co/services` from `beforeEach`.
+3. Add locators and a method in `src/pages/testPomPage.ts` to retrieve the testing offerings text.
 4. Assert that at least two expected offerings are present.
 5. Ensure the test passes consistently.
 
@@ -85,19 +93,18 @@ npx playwright install
 ```
 📂 ravn-js-test-automation-challenge
  ┣ 📂 src
- ┃ ┣ 📂 pages           # Page Object Model files (.ts)
- ┃ ┃ ┣ 📄 basePage.ts   # Base page with common functionality
- ┃ ┃ ┗ 📄 servicesPage.ts # Services page specific actions
- ┃ ┣ 📂 selectors       # Reusable selectors (if any)
- ┃ ┗ 📂 tests           # Test files (.spec.ts)
- ┃   ┗ 📄 qaServices.spec.ts
- ┣ 📂 test-results      # Playwright test results and traces
- ┣ 📂 playwright-report # HTML reports from Playwright
+ ┃ ┣ 📂 pages              # Page Object Model files (.ts)
+ ┃ ┃ ┣ 📄 basePage.ts      # Base page — shared locators / actions
+ ┃ ┃ ┗ 📄 testPomPage.ts   # Extends BasePage — page-specific locators / actions
+ ┃ ┗ 📂 tests              # Test files (.spec.ts)
+ ┃   ┗ 📄 test.spec.ts     # Spec scaffold wired to TestPomPage
  ┣ 📄 playwright.config.ts # Playwright configuration
- ┣ 📄 tsconfig.json     # TypeScript configuration
- ┣ 📄 package.json      # Dependencies and scripts
+ ┣ 📄 tsconfig.json        # TypeScript configuration
+ ┣ 📄 package.json         # Dependencies and scripts
  ┗ 📄 README.md
 ```
+
+The skeleton wiring is: `test.spec.ts` → `TestPomPage` → `BasePage`.
 
 ## Available Scripts
 
@@ -120,7 +127,7 @@ npx playwright test
 
 ### Run Specific Test File
 ```bash
-npx playwright test qaServices.spec.ts
+npx playwright test test.spec.ts
 ```
 
 ### Run Tests with Browser Visible
@@ -151,16 +158,16 @@ This project is built with TypeScript for better type safety and developer exper
 ### Example Test Structure
 ```typescript
 import { test, expect } from "@playwright/test";
-import ServicesPage from "../pages/servicesPage";
+import TestPomPage from "../pages/testPomPage";
 
-test.describe("Services Page Tests", () => {
-  test("should verify quality assurance services", async ({ page }) => {
-    const servicesPage = new ServicesPage(page);
-    
-    await page.goto("https://www.ravn.co/services");
-    const testingTypes = await servicesPage.getTestingTypesText();
-    
-    expect(testingTypes).toContain("QA Automation");
+test.describe("Write a test description here", () => {
+  test.beforeEach(async ({ page }) => {
+    // Setup (e.g., await page.goto("https://www.ravn.co/services"))
+  });
+
+  test("Write a test name", async ({ page }) => {
+    const testPomPage = new TestPomPage(page);
+    // Add your test steps here.
   });
 });
 ```
