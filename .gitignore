@@ -1,5 +1,14 @@
+# IDE
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Node
 node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+playwright-report/
+test-results/
+
+# OS
+.DS_Store
+Thumbs.db
